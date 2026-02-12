@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Video Watermark Protection Styles */
+/* These styles make it harder to hide or remove watermarks via CSS inspection */
+
+.video-watermark {
+  /* Force visibility - prevents hiding via CSS */
+  display: block !important;
+  visibility: visible !important;
+  
+  /* Prevent common hiding techniques */
+  clip: auto !important;
+  clip-path: none !important;
+  
+  /* Prevent text selection and copying */
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  
+  /* Prevent interaction */
+  pointer-events: none !important;
+  
+  /* Ensure high z-index and positioning */
+  z-index: 9999 !important;
+  position: absolute !important;
+  
+  /* Prevent transformations that might hide it */
+  transform: none !important;
+  
+  /* Ensure text is visible (component controls opacity dynamically) */
+  color: rgba(255, 255, 255, 0.7) !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  
+  /* Prevent width/height manipulation that could hide it */
+  min-width: 100px !important;
+  min-height: 20px !important;
+}
+
+/* Additional protection for fullscreen mode */
+:fullscreen .video-watermark,
+:-webkit-full-screen .video-watermark,
+:-moz-full-screen .video-watermark,
+:-ms-fullscreen .video-watermark {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0.5 !important;
+  z-index: 9999 !important;
+}
+
+/* Video Player Range Slider Styles */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: #4b5563;
+  height: 4px;
+  border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #3b82f6;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  margin-top: -6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #2563eb;
+}
+
+input[type="range"]::-moz-range-track {
+  background: #4b5563;
+  height: 4px;
+  border-radius: 4px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: #3b82f6;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #2563eb;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  .animate-shake {
+    animation: shake 0.3s ease-in-out;
+  }
+
+  /* Course Card Utilities */
+  .course-card {
+    @apply flex flex-col h-full;
+  }
+
+  .course-card-image {
+    @apply flex-shrink-0;
+  }
+
+  .course-card-content {
+    @apply flex flex-col flex-grow;
+  }
+
+  .animate-spin-slow {
+    animation: spin 2s linear infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
+    @apply hover:scale-[1.02] hover:shadow-lg active:scale-[0.98];
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-600 hover:bg-secondary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
+    @apply hover:scale-[1.02] hover:shadow-lg active:scale-[0.98];
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
+    @apply hover:scale-[1.02] hover:shadow-md active:scale-[0.98];
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100;
+    @apply transition-all duration-200;
+  }
+
+  .input-field:focus {
+    @apply shadow-sm;
+  }
+
+  .input-field.error {
+    @apply border-red-500 animate-shake;
+  }
+
+  .input-field.success {
+    @apply border-green-500;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6;
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .card:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+
+  .card-animate {
+    @apply opacity-0 translate-y-4;
+    animation: slideUp 0.4s ease-out forwards;
+  }
+}
+
