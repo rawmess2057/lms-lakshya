@@ -218,7 +218,7 @@ npm run dev
 - Scalable backend organization
 
 This project reflects real-world SaaS-level application development.
-
+([Project Live Demo](https://drive.google.com/file/d/1fhLACYXmvyATTPhoY3tyDbd7VKHIaym1/view?usp=sharing))
 ---
 
 # 👨‍💻 Author
@@ -226,7 +226,7 @@ This project reflects real-world SaaS-level application development.
 **Zohad**  
 Full-Stack MERN Developer  
 
-LinkedIn: ([Add your LinkedIn URL](https://www.linkedin.com/in/muhammad-zohad-ijaz-7273b52b1/))  
+LinkedIn: ([LinkedIn URL](https://www.linkedin.com/in/muhammad-zohad-ijaz-7273b52b1/))  
 
 
 ---
