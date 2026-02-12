@@ -1,102 +1,234 @@
-# Multan Academy
+# 🎓 Multan Academy
 
-A comprehensive online learning platform built with the MERN stack (MongoDB, Express, React, Node.js). This platform provides a robust environment for students and instructors, featuring course management, video lectures, and secure authentication.
+> A Production-Ready Full-Stack MERN E-Learning Platform
 
-## 🚀 Features
+Multan Academy is a comprehensive online learning management system built using the MERN stack (MongoDB, Express.js, React.js, Node.js).  
+It provides a scalable, secure, and feature-rich environment for students, teachers, and administrators.
 
-- **User Authentication**: Secure signup and login for students and admins.
-- **Course Management**: Create, update, and manage courses, subjects, and categories.
-- **Video Streaming**: Integration with video services for course content.
-- **Admin Dashboard**: diverse administrative tools for managing the platform.
-- **Student Dashboard**: Personalized dashboard for tracking progress and accessing courses.
-- **Responsive Design**: Fully optimized for mobile and desktop devices.
+🌐 Live Website: https://multanacademy.com  
+💻 Tech Stack: MERN + Stripe + Bunny Stream + Cloudinary + JWT Authentication  
 
-## 🛠 Tech Stack
+---
 
-- **Frontend**: React.js, Tailwind CSS (or custom CSS)
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Authentication**: JWT (JSON Web Tokens)
-- **Payments**: Stripe Integration (configured via env)
-- **Media**: Cloudinary / Bunny Stream (configured via env)
+# 📸 Screenshots
 
-## 📂 Project Structure
+> 📌 Screenshots are located inside the `/screenshots` folder in the root directory.
+
+## 🏠 Landing Page
+![Landing Page](./screenshots/landing-page.png)
+
+## 🎓 Student Dashboard
+![Student Dashboard](./screenshots/student-dashboard.png)
+
+## 🛠 Admin Dashboard
+![Admin Dashboard](./screenshots/admin-dashboard.png)
+
+## 📚 Course Detail Page
+![Course Detail](./screenshots/course-detail.png)
+
+## 💳 Payment Integration (Stripe)
+![Payment Page](./screenshots/payment-page.png)
+
+---
+
+# 🚀 Key Features
+
+## 👤 Authentication & Security
+- JWT-based authentication
+- Role-based access control (Admin / Student / Teacher)
+- Protected routes (Frontend & Backend)
+- Secure environment variable configuration
+- Video watermark protection
+- Device/session management
+
+## 🎓 Course Management
+- Create, update, and delete courses
+- Categories & Subjects management
+- Assignment & Quiz system
+- Live classes integration
+- Course progress tracking
+- Certificate generation
+
+## 🎥 Media & Streaming
+- Bunny Stream secure video integration
+- Cloudinary media storage
+- Protected video player
+- Watermark overlay system
+
+## 💳 Payment System
+- Stripe integration
+- Payment verification & tracking
+- Admin payment management dashboard
+- Secure checkout workflow
+
+## 📊 Dashboards
+- Student dashboard (progress tracking)
+- Admin dashboard (full platform control)
+- Teacher management system
+- Payment & analytics overview
+
+## 📱 UI/UX
+- Fully responsive design
+- Tailwind CSS styling
+- Clean and modern interface
+- Optimized for performance
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+- React.js (Vite)
+- Tailwind CSS
+- Redux Toolkit
+- Axios
+
+## Backend
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- JWT Authentication
+
+## Integrations
+- Stripe API
+- Bunny Stream API
+- Cloudinary
+- Nodemailer (Email Verification)
+
+---
+
+# 📂 Project Architecture
 
 ```
 multan-academy/
-├── backend/            # Express.js server and API routes
+│
+├── backend/
 │   ├── src/
-│   │   ├── controllers/# specific business logic
-│   │   ├── models/     # Mongoose models
-│   │   ├── routes/     # API endpoints
-│   │   └── middleware/ # Auth and error handling
-│   └── ...
-├── frontend/           # React.js client application
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   └── utils/
+│   └── package.json
+│
+├── frontend/
 │   ├── src/
-│   │   ├── components/ # Reusable UI components
-│   │   ├── pages/      # Application views
-│   │   └── ...
-│   └── ...
-└── ...
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── store/
+│   │   ├── hooks/
+│   │   └── utils/
+│   └── package.json
+│
+└── README.md
 ```
 
-## ⚙️ Installation & Setup
+---
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/multan-academy-public.git
-   cd multan-academy-public
-   ```
+# ⚙️ Installation & Setup
 
-2. **Backend Setup:**
-   ```bash
-   cd backend
-   npm install
-   ```
+## 1️⃣ Clone Repository
 
-3. **Frontend Setup:**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
+```bash
+git clone https://github.com/zohad01/Multan_Academy.git
+cd Multan_Academy
+```
 
-## 🔐 Environment Variables
+---
 
-Create a `.env` file in the root directory (based on `.env.example`) and configure the following variables:
+## 2️⃣ Backend Setup
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file inside `/backend` based on `.env.example`:
 
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
 STRIPE_SECRET_KEY=your_stripe_secret
+BUNNY_STREAM_API_KEY=your_bunny_key
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_cloud_key
+CLOUDINARY_API_SECRET=your_cloud_secret
 EMAIL_USER=your_email
 EMAIL_PASS=your_email_password
 ```
 
-## 🏃‍♂️ Running the Application
+Run backend:
 
-**Start the Backend:**
 ```bash
-cd backend
 npm run dev
 ```
 
-**Start the Frontend:**
+---
+
+## 3️⃣ Frontend Setup
+
 ```bash
-cd frontend
+cd ../frontend
+npm install
 npm run dev
 ```
 
-## 🚢 Deployment
+---
 
-To deploy for production:
-1. Build the frontend: `cd frontend && npm run build`
-2. Serve the `dist` or `build` folder from the backend or use a dedicated frontend host (Vercel/Netlify).
-3. Ensure Environment Variables are set in your production environment.
+# 🚢 Production Deployment
 
-## 📄 License
+1. Build frontend:
+   ```bash
+   cd frontend && npm run build
+   ```
 
-This project is licensed under the MIT License.
+2. Deploy:
+   - Frontend → Vercel / Netlify
+   - Backend → Render / Railway / VPS
+   - Database → MongoDB Atlas
+
+3. Set all environment variables in production dashboard.
+
+---
+
+# 🔐 Security Best Practices
+
+- Sensitive keys stored in `.env`
+- `.env` excluded using `.gitignore`
+- No hardcoded credentials
+- Secure payment processing
+- Protected video streaming
+- Role-based authorization middleware
+
+---
+
+# 📈 What This Project Demonstrates
+
+- Full-stack system architecture
+- Secure authentication implementation
+- Real-world Stripe payment integration
+- Cloud media handling
+- Clean REST API design
+- Production-ready deployment structure
+- Scalable backend organization
+
+This project reflects real-world SaaS-level application development.
+
+---
+
+# 👨‍💻 Author
+
+**Zohad**  
+Full-Stack MERN Developer  
+
+LinkedIn: ([Add your LinkedIn URL](https://www.linkedin.com/in/muhammad-zohad-ijaz-7273b52b1/))  
+
+
+---
+
+# 📄 License
+
+Licensed under the MIT License.
