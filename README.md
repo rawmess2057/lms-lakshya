@@ -27,8 +27,10 @@ It provides a scalable, secure, and feature-rich environment for students, teach
 ![Course Detail](./screenshots/course-detail.png)
 
 ## 💳 Payment Integration (Stripe)
-![Payment Page](./screenshots/payment-page.png)
+![Payment Page](./screenshots/payment.png)
 
+## 🎬 Course View (Student Perspective)
+![Course View](./screenshots/course-view.png)
 ---
 
 # 🚀 Key Features
