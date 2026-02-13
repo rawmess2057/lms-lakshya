@@ -218,7 +218,7 @@ npm run dev
 - Scalable backend organization
 
 This project reflects real-world SaaS-level application development.
-([Project Live Demo](https://drive.google.com/file/d/1fhLACYXmvyATTPhoY3tyDbd7VKHIaym1/view?usp=sharing))
+([Project Live Demo](https://youtu.be/PbC6Sp3dvpQ))
 ---
 
 # 👨‍💻 Author
