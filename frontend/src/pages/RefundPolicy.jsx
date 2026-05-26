@@ -51,7 +51,7 @@ const RefundPolicy = () => {
       {/* Footer */}
       <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-8 text-center">
         <p className="text-gray-600 dark:text-gray-400">
-          © Multan Academy - Knowledge Protected. Learning Respected.
+          © Lakshya Academy - Knowledge Protected. Learning Respected.
         </p>
       </div>
     </div>

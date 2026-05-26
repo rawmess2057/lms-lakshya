@@ -31,15 +31,15 @@ const LandingPage = () => {
       } else {
         // Always show a default video if none exists in database
         setIntroVideo({
-          title: 'Welcome to Multan Academy - Platform Introduction',
-          description: 'Learn how to navigate and use Multan Academy. This video will guide you through all the features including course browsing, enrollment, video watching, quizzes, assignments, and certificate generation.',
+          title: 'Welcome to Lakshya Academy - Platform Introduction',
+          description: 'Learn how to navigate and use Lakshya Academy. This video will guide you through all the features including course browsing, enrollment, video watching, quizzes, assignments, and certificate generation.',
           videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Default playable video
         });
       }
     } catch (error) {
       // If API fails, still show a default video
       setIntroVideo({
-        title: 'Welcome to Multan Academy - Platform Introduction',
+        title: 'Welcome to Lakshya Academy - Platform Introduction',
         description: 'Learn how to navigate and use our online learning platform. This video will guide you through all the features including course browsing, enrollment, video watching, quizzes, assignments, and certificate generation.',
         videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Default playable video
       });
@@ -69,7 +69,7 @@ const LandingPage = () => {
                 transition: 'opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s'
               }}
             >
-              Multan Academy
+              Lakshya Academy
             </h1>
 
             {/* Description with staggered animation */}

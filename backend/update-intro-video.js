@@ -23,8 +23,8 @@ dotenv.config({ path: join(__dirname, envFile) });
 dotenv.config({ path: join(__dirname, '.env') });
 
 const videoUrl = process.env.VIDEO_URL || 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-const videoTitle = process.env.VIDEO_TITLE || 'Welcome to Multan Academy - Platform Introduction';
-const videoDescription = process.env.VIDEO_DESCRIPTION || 'Learn how to navigate and use Multan Academy. This video will guide you through all the features including course browsing, enrollment, video watching, quizzes, assignments, and certificate generation.';
+const videoTitle = process.env.VIDEO_TITLE || 'Welcome to Lakshya Academy - Platform Introduction';
+const videoDescription = process.env.VIDEO_DESCRIPTION || 'Learn how to navigate and use Lakshya Academy. This video will guide you through all the features including course browsing, enrollment, video watching, quizzes, assignments, and certificate generation.';
 
 async function updateIntroVideo() {
   try {

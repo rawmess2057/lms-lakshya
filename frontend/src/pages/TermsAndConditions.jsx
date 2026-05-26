@@ -26,7 +26,7 @@ const TermsAndConditions = () => {
           <li>One account per user is permitted</li>
           <li>Sharing login credentials is strictly forbidden</li>
           <li>Each account is limited to a maximum of 2 active devices concurrently</li>
-          <li>Multan Academy reserves the right to suspend accounts involved in misuse</li>
+          <li>Lakshya Academy reserves the right to suspend accounts involved in misuse</li>
         </ul>
         <p className="text-gray-700 dark:text-gray-300">
           Users are responsible for all activity conducted through their account.
@@ -56,7 +56,7 @@ const TermsAndConditions = () => {
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
           <li>Payments must be made through authorised channels only</li>
           <li>All fees are subject to the terms stated at the time of purchase</li>
-          <li>Multan Academy is not liable for payments made through unofficial sources</li>
+          <li>Lakshya Academy is not liable for payments made through unofficial sources</li>
         </ul>
       </section>
 
@@ -78,7 +78,7 @@ const TermsAndConditions = () => {
           6. Limitation of Liability
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Multan Academy shall not be held liable for:
+          Lakshya Academy shall not be held liable for:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
           <li>Academic outcomes or exam results</li>
@@ -110,7 +110,7 @@ const TermsAndConditions = () => {
       {/* Footer */}
       <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-8 text-center">
         <p className="text-gray-600 dark:text-gray-400">
-          © Multan Academy - Knowledge Protected. Learning Respected.
+          © Lakshya Academy - Knowledge Protected. Learning Respected.
         </p>
       </div>
     </div>

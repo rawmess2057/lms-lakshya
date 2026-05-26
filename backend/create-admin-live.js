@@ -25,7 +25,7 @@ dotenv.config({ path: join(__dirname, envFile) });
 dotenv.config({ path: join(__dirname, '.env') });
 
 // Admin credentials (can be overridden by environment variables)
-const adminEmail = process.env.ADMIN_EMAIL || 'admin@multanacademy.com';
+const adminEmail = process.env.ADMIN_EMAIL || 'admin@lakshyaacademy.com';
 const adminPassword = process.env.ADMIN_PASSWORD || 'Admin@2026';
 const adminName = process.env.ADMIN_NAME || 'Admin User';
 

@@ -6,7 +6,7 @@ const DataPolicy = () => {
       </h1>
 
       <p className="text-gray-700 dark:text-gray-300 mb-8">
-        At Multan Academy, we are committed to safeguarding the privacy, confidentiality, and personal data of our users. This Privacy Policy explains how information is collected, used, and protected when you access our platform.
+        At Lakshya Academy, we are committed to safeguarding the privacy, confidentiality, and personal data of our users. This Privacy Policy explains how information is collected, used, and protected when you access our platform.
       </p>
 
       {/* 1. Information We Collect */}
@@ -79,7 +79,7 @@ const DataPolicy = () => {
           5. Cookies & Tracking
         </h2>
         <p className="text-gray-700 dark:text-gray-300">
-          Multan Academy may use cookies to enhance functionality and analyse usage patterns. Users may manage cookie preferences via their browser settings.
+          Lakshya Academy may use cookies to enhance functionality and analyse usage patterns. Users may manage cookie preferences via their browser settings.
         </p>
       </section>
 
@@ -96,7 +96,7 @@ const DataPolicy = () => {
       {/* Footer */}
       <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-8 text-center">
         <p className="text-gray-600 dark:text-gray-400">
-          © Multan Academy - Knowledge Protected. Learning Respected.
+          © Lakshya Academy - Knowledge Protected. Learning Respected.
         </p>
       </div>
     </div>

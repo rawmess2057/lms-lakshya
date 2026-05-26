@@ -6,7 +6,7 @@ const PaymentPolicy = () => {
       </h1>
 
       <p className="text-gray-700 dark:text-gray-300 mb-8">
-        Multan Academy accepts payments <strong>only through officially authorised channels</strong>.
+        Lakshya Academy accepts payments <strong>only through officially authorised channels</strong>.
       </p>
 
       {/* Payment Rules */}
@@ -27,14 +27,14 @@ const PaymentPolicy = () => {
         </h2>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
           <li>Always verify payment requests</li>
-          <li>Multan Academy is not responsible for losses caused by third-party or fraudulent transactions</li>
+          <li>Lakshya Academy is not responsible for losses caused by third-party or fraudulent transactions</li>
         </ul>
       </section>
 
       {/* Footer */}
       <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-8 text-center">
         <p className="text-gray-600 dark:text-gray-400">
-          © Multan Academy - Knowledge Protected. Learning Respected.
+          © Lakshya Academy - Knowledge Protected. Learning Respected.
         </p>
       </div>
     </div>

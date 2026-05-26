@@ -47,7 +47,7 @@ const ManageIntroVideo = () => {
             } else {
                 // Default values if no video exists
                 setVideoData({
-                    title: 'Welcome to Multan Academy',
+                    title: 'Welcome to Lakshya Academy',
                     description: 'Platform Introduction',
                     videoUrl: '',
                     bunnyVideoId: '',

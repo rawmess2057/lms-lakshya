@@ -2,7 +2,7 @@
 
 > A Production-Ready Full-Stack MERN E-Learning Platform
 
-Multan Academy is a comprehensive online learning management system built using the MERN stack (MongoDB, Express.js, React.js, Node.js).  
+Lakshya Academy is a comprehensive online learning management system built using the MERN stack (MongoDB, Express.js, React.js, Node.js).  
 It provides a scalable, secure, and feature-rich environment for students, teachers, and administrators.
 
 🌐 Live Website: https:
@@ -83,7 +83,7 @@ It provides a scalable, secure, and feature-rich environment for students, teach
 # 📂 Project Architecture
 
 ```
-multan-academy/
+lakshya-academy/
 │
 ├── backend/
 │   ├── src/
@@ -115,8 +115,8 @@ multan-academy/
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/zohad01/Multan_Academy.git
-cd Multan_Academy
+git clone https://github.com/zohad01/Lakshya_Academy.git
+cd Lakshya_Academy
 ```
 
 ---

@@ -14,7 +14,7 @@ const __dirname = dirname(__filename);
 // Load environment variables from .env.production
 dotenv.config({ path: join(__dirname, '.env.production') });
 
-const adminEmail = 'multanacademy1@gmail.com';
+const adminEmail = 'lakshyaacademy1@gmail.com';
 const adminPassword = 'Myacademy@2026';
 
 async function fixAdmin() {
@@ -64,7 +64,7 @@ async function fixAdmin() {
       console.log('✅ IsActive:', verify.isActive);
       console.log('\n🎉 Admin login fixed successfully!');
       console.log('\n📋 Login Credentials:');
-      console.log('   Email: multanacademy1@gmail.com');
+      console.log('   Email: lakshyaacademy1@gmail.com');
       console.log('   Password: Myacademy@2026');
       console.log('\n🌐 Admin can login through:');
       console.log('   ✅ Student Portal: /login/student');

@@ -63,11 +63,11 @@ const Layout = () => {
             <Link to="/" className="flex items-center space-x-3">
               <img 
                 src="/assets/brand/logo-primary.jpeg" 
-                alt="Multan Academy Logo" 
+                alt="Lakshya Academy Logo" 
                 className="h-12 w-auto"
               />
               <span className="text-xl font-bold text-gray-900 dark:text-white hidden sm:block">
-                Multan Academy
+                Lakshya Academy
               </span>
             </Link>
 
@@ -284,7 +284,7 @@ const Layout = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* About Section */}
             <div className="lg:col-span-1">
-              <h3 className="text-xl font-bold mb-4 text-white">Multan Academy</h3>
+              <h3 className="text-xl font-bold mb-4 text-white">Lakshya Academy</h3>
               <p className="text-gray-300 leading-relaxed">
                 Empowering students and teachers with the best online learning experience.
               </p>
@@ -367,10 +367,10 @@ const Layout = () => {
                 <div>
                   <p className="text-gray-300 mb-1">Email</p>
                   <a 
-                    href="mailto:multanacademi@gmail.com" 
+                    href="mailto:lakshyaacademi@gmail.com" 
                     className="text-blue-400 hover:text-blue-300 transition-colors duration-200 inline-block hover:underline"
                   >
-                    multanacademi@gmail.com
+                    lakshyaacademi@gmail.com
                   </a>
                 </div>
                 <div>
@@ -434,7 +434,7 @@ const Layout = () => {
           <div className="border-t border-gray-700 dark:border-primary-700 mt-10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-gray-400 text-sm">
-                &copy; {new Date().getFullYear()} Multan Academy. All rights reserved.
+                &copy; {new Date().getFullYear()} Lakshya Academy. All rights reserved.
               </p>
               <p className="text-gray-500 text-xs">
                 Empowering education through technology

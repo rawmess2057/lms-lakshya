@@ -17,7 +17,7 @@ const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.en
 dotenv.config({ path: join(__dirname, envFile) });
 dotenv.config({ path: join(__dirname, '.env') });
 
-const adminEmail = 'multanacademy1@gmail.com';
+const adminEmail = 'lakshyaacademy1@gmail.com';
 const adminPassword = 'Myacademy@2026';
 
 async function diagnose() {
@@ -56,7 +56,7 @@ async function diagnose() {
       console.log('   Email searched:', adminEmail);
       console.log('\n   Checking all users with "admin" in email...');
       const similarUsers = await usersCollection.find({ 
-        email: { $regex: /multanacademy|admin/i } 
+        email: { $regex: /lakshyaacademy|admin/i } 
       }).toArray();
       
       if (similarUsers.length > 0) {
@@ -172,7 +172,7 @@ async function diagnose() {
       console.log('\n🎉 Admin login should work now!');
       console.log('\n📋 Login Credentials:');
       console.log('   URL: http://72.62.73.177/login/teacher (or /login/student)');
-      console.log('   Email: multanacademy1@gmail.com');
+      console.log('   Email: lakshyaacademy1@gmail.com');
       console.log('   Password: Myacademy@2026');
     } else {
       console.log('❌ Password: NOT WORKING');

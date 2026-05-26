@@ -11,7 +11,7 @@ const Policies = () => {
           1. Digital Content Protection Policy
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          All learning resources available on Multan Academy are protected assets created for enrolled learners only.
+          All learning resources available on Lakshya Academy are protected assets created for enrolled learners only.
         </p>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -19,7 +19,7 @@ const Policies = () => {
         </h3>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-4">
           <li>Access is granted strictly for individual educational use.</li>
-          <li>Content may only be viewed within the Multan Academy platform.</li>
+          <li>Content may only be viewed within the Lakshya Academy platform.</li>
         </ul>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -46,7 +46,7 @@ const Policies = () => {
           2. Account Integrity & Access Control Policy
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Each Multan Academy account is issued for single-user access only.
+          Each Lakshya Academy account is issued for single-user access only.
         </p>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -66,7 +66,7 @@ const Policies = () => {
         </ul>
 
         <p className="text-gray-700 dark:text-gray-300">
-          Multan Academy holds <strong>zero liability</strong> for losses arising from shared or compromised accounts.
+          Lakshya Academy holds <strong>zero liability</strong> for losses arising from shared or compromised accounts.
         </p>
       </section>
 
@@ -76,7 +76,7 @@ const Policies = () => {
           3. Intellectual Property & Ownership Policy
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          All educational content published on Multan Academy remains the <strong>exclusive intellectual property of its respective instructors</strong>.
+          All educational content published on Lakshya Academy remains the <strong>exclusive intellectual property of its respective instructors</strong>.
         </p>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -91,11 +91,11 @@ const Policies = () => {
           Platform Disclaimer
         </h3>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Multan Academy does not certify, endorse, or guarantee the accuracy of instructional content and assumes no responsibility for academic outcomes.
+          Lakshya Academy does not certify, endorse, or guarantee the accuracy of instructional content and assumes no responsibility for academic outcomes.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300">
-          Use of Multan Academy branding, logos, or identity without prior written authorisation is prohibited.
+          Use of Lakshya Academy branding, logos, or identity without prior written authorisation is prohibited.
         </p>
       </section>
 
@@ -105,7 +105,7 @@ const Policies = () => {
           4. Secure Payments & Transaction Policy
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Multan Academy accepts payments <strong>only through officially authorised channels</strong>.
+          Lakshya Academy accepts payments <strong>only through officially authorised channels</strong>.
         </p>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -121,7 +121,7 @@ const Policies = () => {
         </h3>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
           <li>Always verify payment requests</li>
-          <li>Multan Academy is not responsible for losses caused by third-party or fraudulent transactions</li>
+          <li>Lakshya Academy is not responsible for losses caused by third-party or fraudulent transactions</li>
         </ul>
       </section>
 
@@ -169,7 +169,7 @@ const Policies = () => {
           6. Policy Amendments & Platform Rights
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Multan Academy reserves the right to:
+          Lakshya Academy reserves the right to:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-4">
           <li>Update policies without prior notice</li>
@@ -184,7 +184,7 @@ const Policies = () => {
       {/* Footer */}
       <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-8 text-center">
         <p className="text-gray-600 dark:text-gray-400">
-          © Multan Academy - Knowledge Protected. Learning Respected.
+          © Lakshya Academy - Knowledge Protected. Learning Respected.
         </p>
       </div>
     </div>

@@ -11,7 +11,7 @@ const IntellectualProperty = () => {
           Digital Content Protection Policy
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          All learning resources available on Multan Academy are protected assets created for enrolled learners only.
+          All learning resources available on Lakshya Academy are protected assets created for enrolled learners only.
         </p>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -19,7 +19,7 @@ const IntellectualProperty = () => {
         </h3>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-4">
           <li>Access is granted strictly for individual educational use.</li>
-          <li>Content may only be viewed within the Multan Academy platform.</li>
+          <li>Content may only be viewed within the Lakshya Academy platform.</li>
         </ul>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -46,7 +46,7 @@ const IntellectualProperty = () => {
           Intellectual Property & Ownership Policy
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          All educational content published on Multan Academy remains the <strong>exclusive intellectual property of its respective instructors</strong>.
+          All educational content published on Lakshya Academy remains the <strong>exclusive intellectual property of its respective instructors</strong>.
         </p>
 
         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -61,18 +61,18 @@ const IntellectualProperty = () => {
           Platform Disclaimer
         </h3>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Multan Academy does not certify, endorse, or guarantee the accuracy of instructional content and assumes no responsibility for academic outcomes.
+          Lakshya Academy does not certify, endorse, or guarantee the accuracy of instructional content and assumes no responsibility for academic outcomes.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300">
-          Use of Multan Academy branding, logos, or identity without prior written authorisation is prohibited.
+          Use of Lakshya Academy branding, logos, or identity without prior written authorisation is prohibited.
         </p>
       </section>
 
       {/* Footer */}
       <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-8 text-center">
         <p className="text-gray-600 dark:text-gray-400">
-          © Multan Academy - Knowledge Protected. Learning Respected.
+          © Lakshya Academy - Knowledge Protected. Learning Respected.
         </p>
       </div>
     </div>

@@ -123,7 +123,7 @@ async function clearData() {
     
     await usersCollection.insertOne({
       name: 'Admin User',
-      email: 'multanacademy1@gmail.com',
+      email: 'lakshyaacademy1@gmail.com',
       password: hashedPassword,
       role: 'admin',
       isActive: true,
@@ -132,7 +132,7 @@ async function clearData() {
     });
     
     console.log('   ✅ Admin user created');
-    console.log('   Email: multanacademy1@gmail.com');
+    console.log('   Email: lakshyaacademy1@gmail.com');
     console.log('   Password: Myacademy@2026');
     console.log('');
     

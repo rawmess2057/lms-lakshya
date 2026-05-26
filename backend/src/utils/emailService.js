@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Get configuration from environment variables
-const PLATFORM_NAME = process.env.PLATFORM_NAME || 'Multan Academy';
+const PLATFORM_NAME = process.env.PLATFORM_NAME || 'Lakshya Academy';
 // CLIENT_URL is now accessed dynamically in functions to support proper env loading
 
 /**

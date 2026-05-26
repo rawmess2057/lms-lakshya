@@ -6,7 +6,7 @@ const CostComparison = () => {
   
   const comparisons = [
     {
-      name: 'Multan Academy',
+      name: 'Lakshya Academy',
       price: '12,000',
       currency: 'PKR',
       isHighlighted: true,
@@ -51,7 +51,7 @@ const CostComparison = () => {
             75% More Cost-Effective Learning
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Compare our affordable pricing with other learning options and see why Multan Academy is the smart choice
+            Compare our affordable pricing with other learning options and see why Lakshya Academy is the smart choice
           </p>
         </div>
 

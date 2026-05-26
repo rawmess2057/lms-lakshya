@@ -24,7 +24,7 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_EMAIL=your-email@gmail.com
 SMTP_PASS=your-app-password
-PLATFORM_NAME=Multan Academy
+PLATFORM_NAME=Lakshya Academy
 ```
 
 **Email Configuration Notes:**

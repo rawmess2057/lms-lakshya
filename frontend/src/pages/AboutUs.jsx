@@ -9,7 +9,7 @@ const AboutUs = () => {
         {/* Mission */}
         <section>
           <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-            Multan Academy
+            Lakshya Academy
           </h2>
           <p className="text-xl text-gray-700 dark:text-gray-300 mb-4">
             Empowering students and educators through high-quality online education.
@@ -94,7 +94,7 @@ const AboutUs = () => {
           </p>
           <div className="space-y-2 text-gray-700 dark:text-gray-300">
             <p>
-              📧 Email: <a href="mailto:multanacademi@gmail.com" className="text-primary-600 dark:text-primary-400 hover:underline">multanacademi@gmail.com</a>
+              📧 Email: <a href="mailto:lakshyaacademi@gmail.com" className="text-primary-600 dark:text-primary-400 hover:underline">lakshyaacademi@gmail.com</a>
             </p>
             <p>
               📱 WhatsApp: <a href="https://wa.me/923126341138" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">+92 312 634 1138</a>

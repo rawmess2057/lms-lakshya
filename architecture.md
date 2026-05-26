@@ -1,7 +1,7 @@
-# Multan Academy - Project Documentation & Architecture
+# Lakshya Academy - Project Documentation & Architecture
 
 ## 1. Project Overview
-- **Name:** Multan Academy (Online Teaching Platform)
+- **Name:** Lakshya Academy (Online Teaching Platform)
 - **Objective:** A comprehensive Learning Management System (LMS) for students, teachers, and administrators.
 - **Tech Stack:** MERN (MongoDB, Express.js, React.js, Node.js)
 - **Current State:** Production-ready with core features implemented and critical bug fixes applied.

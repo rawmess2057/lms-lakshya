@@ -15,7 +15,7 @@ const __dirname = dirname(__filename);
 
 dotenv.config({ path: join(__dirname, '.env.production') });
 
-const adminEmail = 'multanacademy1@gmail.com';
+const adminEmail = 'lakshyaacademy1@gmail.com';
 const adminPassword = 'Myacademy@2026';
 
 async function fixAdminDirect() {
@@ -89,11 +89,11 @@ async function fixAdminDirect() {
         console.log('✅ IsActive:', verify.isActive);
         console.log('\n🎉 Admin login fixed successfully!');
         console.log('\n📋 Login Credentials:');
-        console.log('   Email: multanacademy1@gmail.com');
+        console.log('   Email: lakshyaacademy1@gmail.com');
         console.log('   Password: Myacademy@2026');
         console.log('\n🌐 Login at:');
-        console.log('   Teacher Portal: https://multanacademy.com/login/teacher');
-        console.log('   Student Portal: https://multanacademy.com/login/student');
+        console.log('   Teacher Portal: https://lakshyaacademy.com/login/teacher');
+        console.log('   Student Portal: https://lakshyaacademy.com/login/student');
       } else {
         console.log('⚠️  Password verification failed - but password was set');
         console.log('   Try logging in anyway - the password is correctly hashed');

@@ -36,7 +36,7 @@ const IntroVideo = () => {
             ? 'Platform Introduction' 
             : 'Course Preview',
           description: type === 'global'
-            ? 'Learn how to use Multan Academy. This video will guide you through all the features.'
+            ? 'Learn how to use Lakshya Academy. This video will guide you through all the features.'
             : 'Get a preview of this course content and teaching style.',
           videoUrl: null, // Will show placeholder in player
           bunnyVideoId: null,
