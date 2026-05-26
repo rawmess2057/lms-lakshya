@@ -241,6 +241,9 @@ const AdminDashboard = () => {
           <Link to="/admin/intro-video" className="btn-outline text-center">
             Manage Intro Video
           </Link>
+          <Link to="/admin/faqs" className="btn-outline text-center">
+            Manage FAQs
+          </Link>
         </div>
       </div>
 

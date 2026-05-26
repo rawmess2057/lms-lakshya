@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../utils/axios';
-import { FiTag, FiSearch, FiEdit, FiTrash2, FiPlus, FiX, FiCheck } from 'react-icons/fi';
+import { FiTag, FiSearch, FiEdit, FiTrash2, FiPlus, FiX, FiCheck, FiUpload } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 const ManageCategories = () => {
@@ -16,6 +16,8 @@ const ManageCategories = () => {
     image: '',
     isActive: true,
   });
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
 
   useEffect(() => {
     fetchCategories();
@@ -32,14 +34,35 @@ const ManageCategories = () => {
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const buildFormData = () => {
+    const fd = new FormData();
+    fd.append('name', formData.name);
+    fd.append('description', formData.description);
+    fd.append('isActive', formData.isActive);
+    if (imageFile) {
+      fd.append('image', imageFile);
+    }
+    return fd;
+  };
+
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      console.log('Creating category with data:', formData);
-      await axiosInstance.post('/admin/categories', formData);
+      const fd = buildFormData();
+      await axiosInstance.post('/admin/categories', fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       toast.success('Category created successfully');
       setShowCreateForm(false);
-      setFormData({ name: '', description: '', image: '', isActive: true });
+      resetForm();
       fetchCategories();
     } catch (error) {
       toast.error(error.response?.data?.error || 'Failed to create category');
@@ -54,16 +77,26 @@ const ManageCategories = () => {
       image: category.image || '',
       isActive: category.isActive !== undefined ? category.isActive : true,
     });
+    setImageFile(null);
+    setImagePreview(category.image || '');
     setShowCreateForm(false);
   };
 
   const handleUpdate = async (categoryId) => {
     try {
-      console.log('Updating category with data:', formData);
-      await axiosInstance.put(`/admin/categories/${categoryId}`, formData);
+      const fd = new FormData();
+      fd.append('name', formData.name);
+      fd.append('description', formData.description);
+      fd.append('isActive', formData.isActive);
+      if (imageFile) {
+        fd.append('image', imageFile);
+      }
+      await axiosInstance.put(`/admin/categories/${categoryId}`, fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       toast.success('Category updated successfully');
       setEditingCategory(null);
-      setFormData({ name: '', description: '', image: '', isActive: true });
+      resetForm();
       fetchCategories();
     } catch (error) {
       toast.error(error.response?.data?.error || 'Failed to update category');
@@ -87,7 +120,13 @@ const ManageCategories = () => {
   const handleCancel = () => {
     setShowCreateForm(false);
     setEditingCategory(null);
+    resetForm();
+  };
+
+  const resetForm = () => {
     setFormData({ name: '', description: '', image: '', isActive: true });
+    setImageFile(null);
+    setImagePreview('');
   };
 
   const filteredCategories = categories.filter((category) => {
@@ -114,7 +153,7 @@ const ManageCategories = () => {
             <button
               onClick={() => {
                 setShowCreateForm(true);
-                setFormData({ name: '', description: '', image: '', isActive: true });
+                resetForm();
               }}
               className="btn-primary flex items-center space-x-2"
             >
@@ -163,16 +202,26 @@ const ManageCategories = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Image URL
+                  Image
                 </label>
-                <input
-                  type="url"
-                  className="input-field w-full"
-                  placeholder="https://example.com/image.jpg"
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                />
-                <p className="text-xs text-gray-500 mt-1">Provide a direct link to an image (optional)</p>
+                <div className="flex items-center space-x-4">
+                  <label className="btn-outline cursor-pointer flex items-center space-x-2">
+                    <FiUpload />
+                    <span>Choose File</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleImageChange}
+                    />
+                  </label>
+                  {imagePreview && (
+                    <div className="relative w-20 h-20 rounded overflow-hidden">
+                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Upload an image (optional). JPG, PNG, GIF, WEBP accepted.</p>
               </div>
               <div>
                 <label className="flex items-center space-x-2">
@@ -298,13 +347,21 @@ const ManageCategories = () => {
                     />
                   </div>
                   <div>
-                    <input
-                      type="url"
-                      className="input-field w-full"
-                      placeholder="Image URL"
-                      value={formData.image}
-                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    />
+                    <label className="btn-outline cursor-pointer flex items-center space-x-2 text-sm">
+                      <FiUpload />
+                      <span>{imageFile ? 'Change File' : 'Choose File'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleImageChange}
+                      />
+                    </label>
+                    {imagePreview && (
+                      <div className="mt-2 w-full h-24 rounded overflow-hidden bg-gray-100 dark:bg-gray-700">
+                        <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                      </div>
+                    )}
                   </div>
                   <div>
                     <label className="flex items-center space-x-2">
@@ -352,4 +409,3 @@ const ManageCategories = () => {
 };
 
 export default ManageCategories;
-

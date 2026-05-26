@@ -33,6 +33,14 @@ import {
   deleteHighlight,
   toggleHighlight,
 } from '../controllers/highlightController.js';
+import {
+  getAllFAQs,
+  createFAQ,
+  updateFAQ,
+  deleteFAQ,
+  toggleFAQ,
+} from '../controllers/faqController.js';
+import upload from '../middleware/upload.js';
 import protect from '../middleware/auth.js';
 import authorize from '../middleware/roles.js';
 
@@ -54,8 +62,8 @@ router.put('/config', updateAdminConfig);
 
 // Category management routes (admin only)
 router.get('/categories', getAllCategories);
-router.post('/categories', createCategory);
-router.put('/categories/:id', updateCategory);
+router.post('/categories', upload.single('image'), createCategory);
+router.put('/categories/:id', upload.single('image'), updateCategory);
 router.delete('/categories/:id', deleteCategory);
 
 // Payment management routes (admin only)
@@ -78,6 +86,13 @@ router.post('/highlights', createHighlight);
 router.put('/highlights/:id', updateHighlight);
 router.delete('/highlights/:id', deleteHighlight);
 router.put('/highlights/:id/toggle', toggleHighlight);
+
+// FAQ management routes (admin only)
+router.get('/faqs', getAllFAQs);
+router.post('/faqs', createFAQ);
+router.put('/faqs/:id', updateFAQ);
+router.delete('/faqs/:id', deleteFAQ);
+router.put('/faqs/:id/toggle', toggleFAQ);
 
 export default router;
 

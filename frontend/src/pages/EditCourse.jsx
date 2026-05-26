@@ -5,7 +5,7 @@ import axiosInstance from '../utils/axios';
 import {
   FiSave, FiX, FiPlus, FiEdit2, FiTrash2, FiPlay, FiBook,
   FiFileText, FiUsers, FiSettings, FiArrowLeft, FiMail, FiClock, FiTrendingUp, FiAward, FiSearch,
-  FiChevronDown, FiChevronUp, FiCheckCircle, FiXCircle, FiVideo
+  FiChevronDown, FiChevronUp, FiCheckCircle, FiXCircle, FiVideo, FiUpload
 } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import AddVideoModal from '../components/AddVideoModal';
@@ -51,6 +51,8 @@ const EditCourse = () => {
     demoVideo: '',
     isPublished: false,
   });
+  const [thumbnailFile, setThumbnailFile] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
 
   // Content state
   const [videos, setVideos] = useState([]);
@@ -140,6 +142,8 @@ const EditCourse = () => {
         demoVideo: courseData.demoVideo || '',
         isPublished: courseData.isPublished || false,
       });
+      setThumbnailFile(null);
+      setThumbnailPreview('');
       setVideos(courseData.videos || []);
       setMaterials(courseData.materials || []);
       setQuizzes(courseData.quizzes || []);
@@ -229,33 +233,57 @@ const EditCourse = () => {
     });
   };
 
+  const handleThumbnailChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnailFile(file);
+      setThumbnailPreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleSaveCourse = async () => {
     setSaving(true);
     console.log("Course ID being sent:", id);
     try {
-      // Create a clean payload with only necessary fields
-      const payload = {
-        title: formData.title,
-        description: formData.description,
-        price: Number(formData.price),
-        subject: formData.subject,
-        category: formData.category,
-        level: formData.level,
-        duration: Number(formData.duration),
-        thumbnail: formData.thumbnail,
-        demoVideo: formData.demoVideo,
-        isPublished: formData.isPublished
-      };
+      let payload;
 
-      // Ensure we are sending IDs, not objects (extra safety)
-      if (typeof payload.category === 'object' && payload.category !== null) {
-        payload.category = payload.category._id;
-      }
-      if (typeof payload.subject === 'object' && payload.subject !== null) {
-        payload.subject = payload.subject._id;
+      if (thumbnailFile) {
+        const fd = new FormData();
+        fd.append('title', formData.title);
+        fd.append('description', formData.description);
+        fd.append('price', Number(formData.price));
+        fd.append('subject', formData.subject);
+        fd.append('category', formData.category);
+        fd.append('level', formData.level);
+        fd.append('duration', Number(formData.duration));
+        fd.append('demoVideo', formData.demoVideo);
+        fd.append('isPublished', formData.isPublished);
+        fd.append('thumbnail', thumbnailFile);
+        payload = fd;
+      } else {
+        payload = {
+          title: formData.title,
+          description: formData.description,
+          price: Number(formData.price),
+          subject: formData.subject,
+          category: formData.category,
+          level: formData.level,
+          duration: Number(formData.duration),
+          demoVideo: formData.demoVideo,
+          isPublished: formData.isPublished,
+        };
+
+        if (typeof payload.category === 'object' && payload.category !== null) {
+          payload.category = payload.category._id;
+        }
+        if (typeof payload.subject === 'object' && payload.subject !== null) {
+          payload.subject = payload.subject._id;
+        }
       }
 
-      await axiosInstance.put(`/courses/${id}`, payload);
+      await axiosInstance.put(`/courses/${id}`, payload, thumbnailFile ? {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      } : {});
       toast.success('Course updated successfully!');
       await fetchCourse();
     } catch (error) {
@@ -513,16 +541,32 @@ const EditCourse = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Thumbnail URL
+                  Thumbnail
                 </label>
-                <input
-                  type="url"
-                  name="thumbnail"
-                  value={formData.thumbnail}
-                  onChange={handleInputChange}
-                  className="input-field"
-                  placeholder="https://example.com/image.jpg"
-                />
+                <div className="flex items-center space-x-4">
+                  <label className="btn-outline cursor-pointer flex items-center space-x-2">
+                    <FiUpload />
+                    <span>Choose File</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleThumbnailChange}
+                    />
+                  </label>
+                  {(thumbnailPreview || formData.thumbnail) && (
+                    <div className="relative w-20 h-20 rounded overflow-hidden">
+                      <img
+                        src={thumbnailPreview || formData.thumbnail}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Upload a thumbnail image. JPG, PNG, GIF, WEBP accepted.
+                </p>
               </div>
 
               <div>
