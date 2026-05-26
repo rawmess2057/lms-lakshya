@@ -10,6 +10,7 @@ import {
   enrollInCourse,
   getCourseStudents,
 } from '../controllers/courseController.js';
+import upload from '../middleware/upload.js';
 import protect, { optionalAuth } from '../middleware/auth.js';
 import authorize from '../middleware/roles.js';
 
@@ -26,8 +27,8 @@ router.get('/:id/students', protect, authorize('teacher', 'admin'), getCourseStu
 router.post('/:id/enroll', protect, authorize('student'), enrollInCourse);
 
 // Teacher/Admin routes
-router.post('/', protect, authorize('teacher', 'admin'), createCourse);
-router.put('/:id', protect, authorize('teacher', 'admin'), updateCourse);
+router.post('/', protect, authorize('teacher', 'admin'), upload.single('thumbnail'), createCourse);
+router.put('/:id', protect, authorize('teacher', 'admin'), upload.single('thumbnail'), updateCourse);
 router.delete('/:id', protect, authorize('teacher', 'admin'), deleteCourse);
 
 export default router;

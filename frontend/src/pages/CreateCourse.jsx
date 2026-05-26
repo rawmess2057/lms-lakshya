@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axiosInstance from '../utils/axios';
-import { FiSave, FiX, FiArrowLeft } from 'react-icons/fi';
+import { FiSave, FiX, FiArrowLeft, FiUpload } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 const CreateCourse = () => {
@@ -11,8 +11,9 @@ const CreateCourse = () => {
   const [subjects, setSubjects] = useState([]);
   const [categories, setCategories] = useState([]);
   const [creating, setCreating] = useState(false);
-  // Filtered subjects based on selected category
   const [filteredSubjects, setFilteredSubjects] = useState([]);
+  const [thumbnailFile, setThumbnailFile] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
 
   const [formData, setFormData] = useState({
     title: '',
@@ -32,18 +33,11 @@ const CreateCourse = () => {
     fetchCategories();
   }, []);
 
-  // Filter subjects when category or subjects change
   useEffect(() => {
     if (formData.category) {
-      // Find the selected category object to get its name if needed, but we rely on IDs mostly.
-      // However, Subject model now has category as ObjectId.
-      // So we filter simple: subject.category._id === formData.category
-      // But wait, the subject object from fetchSubjects might have category as string or object depending on backend.
-      // The backend getSubjects now populates category. So subject.category is an object.
-      // subject.category._id is the ID.
       const filtered = subjects.filter(sub =>
         (sub.category?._id === formData.category) ||
-        (sub.category === formData.category) // Fallback if not populated
+        (sub.category === formData.category)
       );
       setFilteredSubjects(filtered);
     } else {
@@ -65,7 +59,6 @@ const CreateCourse = () => {
       const response = await axiosInstance.get('/categories');
       setCategories(response.data.data || []);
     } catch (error) {
-      // Silently fail
     }
   };
 
@@ -75,7 +68,6 @@ const CreateCourse = () => {
     setFormData(prev => {
       const updates = { ...prev, [name]: type === 'checkbox' ? checked : value };
 
-      // If category changes, reset subject
       if (name === 'category') {
         updates.subject = '';
       }
@@ -83,10 +75,17 @@ const CreateCourse = () => {
     });
   };
 
+  const handleThumbnailChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnailFile(file);
+      setThumbnailPreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleCreateCourse = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
     if (!formData.title.trim()) {
       toast.error('Please enter a course title');
       return;
@@ -106,9 +105,23 @@ const CreateCourse = () => {
 
     setCreating(true);
     try {
-      const response = await axiosInstance.post('/courses', formData);
+      const fd = new FormData();
+      fd.append('title', formData.title);
+      fd.append('description', formData.description);
+      fd.append('price', formData.price);
+      fd.append('subject', formData.subject);
+      fd.append('category', formData.category);
+      fd.append('level', formData.level);
+      fd.append('duration', formData.duration);
+      fd.append('demoVideo', formData.demoVideo);
+      fd.append('isPublished', formData.isPublished);
+      if (thumbnailFile) {
+        fd.append('thumbnail', thumbnailFile);
+      }
+      const response = await axiosInstance.post('/courses', fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       toast.success('Course created successfully!');
-      // Navigate to edit page to add content (videos, quizzes, etc.)
       navigate(`/teacher/courses/${response.data.data._id}/edit`);
     } catch (error) {
       toast.error(error.response?.data?.error || 'Failed to create course');
@@ -131,48 +144,26 @@ const CreateCourse = () => {
             Create New Course
           </h1>
         </div>
-        <Link
-          to="/teacher/dashboard"
-          className="btn-outline"
-        >
-          <FiX className="inline mr-2" />
-          Cancel
-        </Link>
       </div>
 
-      <div className="card">
-        <form onSubmit={handleCreateCourse} className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Course Details</h2>
+      <form onSubmit={handleCreateCourse} className="max-w-4xl">
+        <div className="card mb-8">
+          <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+            Course Details
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
+            <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Course Title * <span className="text-red-500">*</span>
+                Course Title <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="input-field"
+                className="input-field w-full"
                 placeholder="Enter course title"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Price (NPR) <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="number"
-                name="price"
-                value={formData.price}
-                onChange={handleInputChange}
-                className="input-field"
-                min="0"
-                step="1"
-                placeholder="0"
                 required
               />
             </div>
@@ -185,13 +176,13 @@ const CreateCourse = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
-                className="input-field"
+                className="input-field w-full"
                 required
               >
-                <option value="">Select a category</option>
-                {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.name}
+                <option value="">Select Category</option>
+                {categories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
                   </option>
                 ))}
               </select>
@@ -205,19 +196,20 @@ const CreateCourse = () => {
                 name="subject"
                 value={formData.subject}
                 onChange={handleInputChange}
-                className="input-field"
+                className="input-field w-full"
                 required
-                disabled={!formData.category}
               >
-                <option value="">Select a subject</option>
-                {filteredSubjects.map((subject) => (
-                  <option key={subject._id} value={subject._id}>
-                    {subject.name}
+                <option value="">Select Subject</option>
+                {filteredSubjects.map((sub) => (
+                  <option key={sub._id} value={sub._id}>
+                    {sub.name}
                   </option>
                 ))}
               </select>
-              {!formData.category && (
-                <p className="text-xs text-gray-500 mt-1">Please select a category first</p>
+              {formData.category && filteredSubjects.length === 0 && (
+                <p className="text-xs text-amber-600 mt-1">
+                  No subjects available for this category.
+                </p>
               )}
             </div>
 
@@ -229,13 +221,29 @@ const CreateCourse = () => {
                 name="level"
                 value={formData.level}
                 onChange={handleInputChange}
-                className="input-field"
-                required
+                className="input-field w-full"
               >
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
               </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Price ($) <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="number"
+                name="price"
+                value={formData.price}
+                onChange={handleInputChange}
+                className="input-field w-full"
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+                required
+              />
             </div>
 
             <div>
@@ -257,18 +265,27 @@ const CreateCourse = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Thumbnail URL
+                Thumbnail
               </label>
-              <input
-                type="url"
-                name="thumbnail"
-                value={formData.thumbnail}
-                onChange={handleInputChange}
-                className="input-field"
-                placeholder="https://example.com/image.jpg"
-              />
+              <div className="flex items-center space-x-4">
+                <label className="btn-outline cursor-pointer flex items-center space-x-2">
+                  <FiUpload />
+                  <span>Choose File</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleThumbnailChange}
+                  />
+                </label>
+                {thumbnailPreview && (
+                  <div className="relative w-20 h-20 rounded overflow-hidden">
+                    <img src={thumbnailPreview} alt="Preview" className="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                Optional: Add a thumbnail image URL for your course
+                Optional: Upload a thumbnail image for your course. JPG, PNG, GIF, WEBP accepted.
               </p>
             </div>
 
@@ -290,7 +307,7 @@ const CreateCourse = () => {
             </div>
           </div>
 
-          <div>
+          <div className="mt-6">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Description <span className="text-red-500">*</span>
             </label>
@@ -298,54 +315,48 @@ const CreateCourse = () => {
               name="description"
               value={formData.description}
               onChange={handleInputChange}
-              className="input-field"
+              className="input-field w-full"
               rows="6"
-              placeholder="Enter a detailed description of your course..."
+              placeholder="Enter a detailed description of your course"
               required
             />
           </div>
 
-          <div className="flex items-center">
+          <div className="mt-6 flex items-center space-x-2">
             <input
               type="checkbox"
-              id="isPublished"
               name="isPublished"
               checked={formData.isPublished}
               onChange={handleInputChange}
-              className="w-4 h-4 text-primary-600 rounded"
+              className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+              id="isPublished"
             />
-            <label htmlFor="isPublished" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              Publish this course immediately (make it visible to students)
+            <label htmlFor="isPublished" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Publish course immediately
             </label>
           </div>
 
-          <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-            <p className="text-sm text-blue-800 dark:text-blue-200">
-              <strong>Note:</strong> After creating the course, you'll be able to add videos, quizzes, assignments, and materials.
-            </p>
-          </div>
-
-          <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="mt-8 flex justify-end space-x-2">
             <Link
               to="/teacher/dashboard"
-              className="btn-outline"
+              className="btn-outline flex items-center space-x-2"
             >
-              Cancel
+              <FiX />
+              <span>Cancel</span>
             </Link>
             <button
               type="submit"
               disabled={creating}
-              className="btn-primary"
+              className="btn-primary flex items-center space-x-2"
             >
-              <FiSave className="inline mr-2" />
-              {creating ? 'Creating...' : 'Create Course'}
+              <FiSave />
+              <span>{creating ? 'Creating...' : 'Create Course'}</span>
             </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
 
 export default CreateCourse;
-

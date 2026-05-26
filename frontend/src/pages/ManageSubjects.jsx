@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../utils/axios';
-import { FiBook, FiSearch, FiEdit, FiTrash2, FiPlus, FiX, FiCheck } from 'react-icons/fi';
+import { FiBook, FiSearch, FiEdit, FiTrash2, FiPlus, FiX, FiCheck, FiUpload } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 const ManageSubjects = () => {
@@ -17,6 +17,8 @@ const ManageSubjects = () => {
     image: '',
     category: '',
   });
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
 
   useEffect(() => {
     fetchSubjects();
@@ -43,14 +45,30 @@ const ManageSubjects = () => {
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      console.log('Creating subject with data:', formData);
-      await axiosInstance.post('/subjects', formData);
+      const fd = new FormData();
+      fd.append('name', formData.name);
+      fd.append('description', formData.description);
+      fd.append('category', formData.category);
+      if (imageFile) {
+        fd.append('image', imageFile);
+      }
+      await axiosInstance.post('/subjects', fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       toast.success('Subject created successfully');
       setShowCreateForm(false);
-      setFormData({ name: '', description: '', image: '', category: '' });
+      resetForm();
       fetchSubjects();
     } catch (error) {
       toast.error(error.response?.data?.error || 'Failed to create subject');
@@ -65,16 +83,26 @@ const ManageSubjects = () => {
       image: subject.image || '',
       category: subject.category?._id || subject.category || '',
     });
+    setImageFile(null);
+    setImagePreview(subject.image || '');
     setShowCreateForm(false);
   };
 
   const handleUpdate = async (subjectId) => {
     try {
-      console.log('Updating subject with data:', formData);
-      await axiosInstance.put(`/subjects/${subjectId}`, formData);
+      const fd = new FormData();
+      fd.append('name', formData.name);
+      fd.append('description', formData.description);
+      fd.append('category', formData.category);
+      if (imageFile) {
+        fd.append('image', imageFile);
+      }
+      await axiosInstance.put(`/subjects/${subjectId}`, fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       toast.success('Subject updated successfully');
       setEditingSubject(null);
-      setFormData({ name: '', description: '', image: '', category: '' });
+      resetForm();
       fetchSubjects();
     } catch (error) {
       toast.error(error.response?.data?.error || 'Failed to update subject');
@@ -98,7 +126,13 @@ const ManageSubjects = () => {
   const handleCancel = () => {
     setShowCreateForm(false);
     setEditingSubject(null);
+    resetForm();
+  };
+
+  const resetForm = () => {
     setFormData({ name: '', description: '', image: '', category: '' });
+    setImageFile(null);
+    setImagePreview('');
   };
 
   const filteredSubjects = subjects.filter((subject) => {
@@ -125,7 +159,7 @@ const ManageSubjects = () => {
             <button
               onClick={() => {
                 setShowCreateForm(true);
-                setFormData({ name: '', description: '', image: '', category: '' });
+                resetForm();
               }}
               className="btn-primary flex items-center space-x-2"
             >
@@ -192,16 +226,26 @@ const ManageSubjects = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Image URL
+                  Image
                 </label>
-                <input
-                  type="url"
-                  className="input-field w-full"
-                  placeholder="https://example.com/image.jpg"
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                />
-                <p className="text-xs text-gray-500 mt-1">Provide a direct link to an image (optional)</p>
+                <div className="flex items-center space-x-4">
+                  <label className="btn-outline cursor-pointer flex items-center space-x-2">
+                    <FiUpload />
+                    <span>Choose File</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleImageChange}
+                    />
+                  </label>
+                  {imagePreview && (
+                    <div className="relative w-20 h-20 rounded overflow-hidden">
+                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Upload an image (optional). JPG, PNG, GIF, WEBP accepted.</p>
               </div>
               <div className="flex space-x-2">
                 <button type="submit" className="btn-primary flex items-center space-x-2">
@@ -314,13 +358,21 @@ const ManageSubjects = () => {
                     />
                   </div>
                   <div>
-                    <input
-                      type="url"
-                      className="input-field w-full"
-                      placeholder="Image URL"
-                      value={formData.image}
-                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    />
+                    <label className="btn-outline cursor-pointer flex items-center space-x-2 text-sm">
+                      <FiUpload />
+                      <span>{imageFile ? 'Change File' : 'Choose File'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleImageChange}
+                      />
+                    </label>
+                    {imagePreview && (
+                      <div className="mt-2 w-full h-24 rounded overflow-hidden bg-gray-100 dark:bg-gray-700">
+                        <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                      </div>
+                    )}
                   </div>
                   <div>
                     <select
@@ -366,4 +418,3 @@ const ManageSubjects = () => {
 };
 
 export default ManageSubjects;
-

@@ -59,6 +59,9 @@ export const getCategory = asyncHandler(async (req, res) => {
  * @access  Private/Admin
  */
 export const createCategory = asyncHandler(async (req, res) => {
+  if (req.file) {
+    req.body.image = `/uploads/images/${req.file.filename}`;
+  }
   const category = await Category.create(req.body);
 
   // Log admin activity
@@ -85,6 +88,9 @@ export const createCategory = asyncHandler(async (req, res) => {
  * @access  Private/Admin
  */
 export const updateCategory = asyncHandler(async (req, res) => {
+  if (req.file) {
+    req.body.image = `/uploads/images/${req.file.filename}`;
+  }
   const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,

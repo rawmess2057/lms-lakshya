@@ -46,6 +46,9 @@ export const getSubject = asyncHandler(async (req, res) => {
  * @access  Private/Admin
  */
 export const createSubject = asyncHandler(async (req, res) => {
+  if (req.file) {
+    req.body.image = `/uploads/images/${req.file.filename}`;
+  }
   const subject = await Subject.create(req.body);
 
   // Log admin activity
@@ -72,6 +75,9 @@ export const createSubject = asyncHandler(async (req, res) => {
  * @access  Private/Admin
  */
 export const updateSubject = asyncHandler(async (req, res) => {
+  if (req.file) {
+    req.body.image = `/uploads/images/${req.file.filename}`;
+  }
   const subject = await Subject.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,

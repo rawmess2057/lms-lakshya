@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/axios';
-import { FiBook, FiSearch, FiEdit, FiTrash2, FiEye, FiEyeOff, FiUsers, FiX, FiMail, FiClock, FiTrendingUp, FiPlus, FiCheck, FiAlertCircle } from 'react-icons/fi';
+import { FiBook, FiSearch, FiEdit, FiTrash2, FiEye, FiEyeOff, FiUsers, FiX, FiMail, FiClock, FiTrendingUp, FiPlus, FiCheck, FiAlertCircle, FiUpload } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import CourseThumbnail from '../components/CourseThumbnail';
 
@@ -34,6 +34,9 @@ const ManageCourses = () => {
     demoVideo: '',
     isPublished: false,
   });
+
+  const [thumbnailFile, setThumbnailFile] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
 
   const [categories, setCategories] = useState([]);
   const [filteredSubjects, setFilteredSubjects] = useState([]);
@@ -180,29 +183,39 @@ const ManageCourses = () => {
     }
   };
 
+  const handleThumbnailChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnailFile(file);
+      setThumbnailPreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleCreateCourse = async (e) => {
     e.preventDefault();
     setCreating(true);
 
     try {
-      const response = await axiosInstance.post('/courses', formData);
+      const fd = new FormData();
+      fd.append('title', formData.title);
+      fd.append('description', formData.description);
+      fd.append('price', formData.price);
+      fd.append('teacher', formData.teacher);
+      fd.append('category', formData.category);
+      fd.append('subject', formData.subject);
+      fd.append('level', formData.level);
+      fd.append('duration', formData.duration);
+      fd.append('demoVideo', formData.demoVideo);
+      fd.append('isPublished', formData.isPublished);
+      if (thumbnailFile) {
+        fd.append('thumbnail', thumbnailFile);
+      }
+      const response = await axiosInstance.post('/courses', fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       toast.success('Course created successfully');
       setShowCreateModal(false);
-      setFormData({
-        title: '',
-        description: '',
-        price: 0,
-        teacher: '',
-        price: 0,
-        teacher: '',
-        category: '',
-        subject: '',
-        level: 'beginner',
-        duration: 0,
-        thumbnail: '',
-        demoVideo: '',
-        isPublished: false,
-      });
+      resetCourseForm();
       fetchCourses();
       // Navigate to edit page
       navigate(`/teacher/courses/${response.data.data._id}/edit`);
@@ -211,6 +224,24 @@ const ManageCourses = () => {
     } finally {
       setCreating(false);
     }
+  };
+
+  const resetCourseForm = () => {
+    setFormData({
+      title: '',
+      description: '',
+      price: 0,
+      teacher: '',
+      category: '',
+      subject: '',
+      level: 'beginner',
+      duration: 0,
+      thumbnail: '',
+      demoVideo: '',
+      isPublished: false,
+    });
+    setThumbnailFile(null);
+    setThumbnailPreview('');
   };
 
   const filteredCourses = courses.filter((course) => {
@@ -739,15 +770,26 @@ const ManageCourses = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Thumbnail URL
+                  Thumbnail
                 </label>
-                <input
-                  type="url"
-                  className="input-field w-full"
-                  value={formData.thumbnail}
-                  onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-                  placeholder="https://example.com/image.jpg"
-                />
+                <div className="flex items-center space-x-4">
+                  <label className="btn-outline cursor-pointer flex items-center space-x-2">
+                    <FiUpload />
+                    <span>Choose File</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleThumbnailChange}
+                    />
+                  </label>
+                  {thumbnailPreview && (
+                    <div className="relative w-20 h-20 rounded overflow-hidden">
+                      <img src={thumbnailPreview} alt="Preview" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Upload a thumbnail image. JPG, PNG, GIF, WEBP accepted.</p>
               </div>
 
               <div>
@@ -784,18 +826,7 @@ const ManageCourses = () => {
                   type="button"
                   onClick={() => {
                     setShowCreateModal(false);
-                    setFormData({
-                      title: '',
-                      description: '',
-                      price: 0,
-                      teacher: '',
-                      subject: '',
-                      level: 'beginner',
-                      duration: 0,
-                      thumbnail: '',
-                      demoVideo: '',
-                      isPublished: false,
-                    });
+                    resetCourseForm();
                   }}
                   className="btn-outline"
                 >

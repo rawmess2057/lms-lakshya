@@ -21,6 +21,8 @@ const storage = multer.diskStorage({
       uploadPath = './uploads/profiles';
     } else if (file.fieldname === 'receipt') {
       uploadPath = './uploads/receipts';
+    } else if (file.fieldname === 'image' || file.fieldname === 'thumbnail') {
+      uploadPath = './uploads/images';
     }
 
     // Create directory if it doesn't exist
@@ -84,6 +86,16 @@ const fileFilter = (req, file, cb) => {
       return cb(null, true);
     } else {
       cb(new Error('Only image files (JPG, PNG, GIF, WEBP) are allowed for payment receipts!'));
+    }
+  } else if (file.fieldname === 'image' || file.fieldname === 'thumbnail') {
+    const allowedTypes = /jpeg|jpg|png|gif|webp/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = /^image\//.test(file.mimetype);
+
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Only image files (JPG, PNG, GIF, WEBP) are allowed!'));
     }
   } else {
     cb(new Error('Invalid file type!'));

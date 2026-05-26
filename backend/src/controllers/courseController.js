@@ -221,8 +221,10 @@ export const createCourse = asyncHandler(async (req, res) => {
     req.body.requiresApproval = false; // Teachers can publish directly for now
   }
 
-  // Process thumbnail URL
-  if (req.body.thumbnail) {
+  // Process thumbnail upload
+  if (req.file) {
+    req.body.thumbnail = `/uploads/images/${req.file.filename}`;
+  } else if (req.body.thumbnail) {
     req.body.thumbnail = processThumbnailUrl(req.body.thumbnail);
   }
 
@@ -326,8 +328,10 @@ export const updateCourse = asyncHandler(async (req, res) => {
 
 
 
-  // Process thumbnail URL
-  if (req.body.thumbnail) {
+  // Process thumbnail upload
+  if (req.file) {
+    req.body.thumbnail = `/uploads/images/${req.file.filename}`;
+  } else if (req.body.thumbnail) {
     req.body.thumbnail = processThumbnailUrl(req.body.thumbnail);
   }
 

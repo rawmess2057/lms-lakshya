@@ -26,6 +26,7 @@ import ManageHighlights from './pages/ManageHighlights';
 import ManageTeachers from './pages/ManageTeachers';
 import ManageCounsellingRequests from './pages/ManageCounsellingRequests';
 import ManageIntroVideo from './pages/ManageIntroVideo';
+import ManageFAQs from './pages/ManageFAQs';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import VideoPlayer from './pages/VideoPlayer';
@@ -293,6 +294,14 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['admin']}>
                 <ManageIntroVideo />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="admin/faqs"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <ManageFAQs />
               </ProtectedRoute>
             }
           />

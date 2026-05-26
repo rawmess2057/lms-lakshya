@@ -132,6 +132,7 @@ import setupRoutes from './routes/setup.js';
 import counsellingRoutes from './routes/counselling.js';
 import highlightRoutes from './routes/highlights.js';
 import teacherProfileRoutes from './routes/teacherProfiles.js';
+import faqRoutes from './routes/faqs.js';
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
@@ -151,6 +152,7 @@ app.use('/api/setup', setupRoutes);
 app.use('/api/counselling', counsellingRoutes);
 app.use('/api/highlights', highlightRoutes);
 app.use('/api/teacher-profiles', teacherProfileRoutes);
+app.use('/api/faqs', faqRoutes);
 
 // Error handler middleware (must be last)
 app.use(errorHandler);
