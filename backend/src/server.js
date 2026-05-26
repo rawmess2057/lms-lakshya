@@ -32,7 +32,7 @@ import './utils/emailService.js';
 const app = express();
 
 // Trust proxy (required when behind Nginx/reverse proxy)
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 // Security middleware
 app.use(helmet());

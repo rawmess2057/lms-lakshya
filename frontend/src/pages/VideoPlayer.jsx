@@ -12,6 +12,7 @@ import {
   disableVideoProtection,
   requestVideoStreamToken,
 } from '../utils/videoProtection';
+import { cleanYoutubeUrl } from '../utils/mediaHelpers';
 
 const VideoPlayer = () => {
   const { id, videoId } = useParams();
@@ -260,6 +261,7 @@ const VideoPlayer = () => {
   const currentIndex = videos.findIndex((v) => v._id === videoId);
   const nextVideo = currentIndex < videos.length - 1 ? videos[currentIndex + 1] : null;
   const prevVideo = currentIndex > 0 ? videos[currentIndex - 1] : null;
+  const cleanVideoUrl = video?.videoUrl ? cleanYoutubeUrl(video.videoUrl) : null;
 
   if (loading) {
     return (
@@ -327,17 +329,17 @@ const VideoPlayer = () => {
                   }
                   return <BunnyPlayer videoId={video.bunnyVideoId} />;
                 })()
-              ) : (video.videoSource === 'drive' || (video.videoUrl && (video.videoUrl.includes('drive.google.com') || video.videoUrl.includes('docs.google.com')))) ? (
+              ) : (video.videoSource === 'drive' || (cleanVideoUrl && (cleanVideoUrl.includes('drive.google.com') || cleanVideoUrl.includes('docs.google.com')))) ? (
                 <iframe
-                  src={video.videoUrl}
+                  src={cleanVideoUrl}
                   className="w-full h-full"
                   allow="autoplay; fullscreen"
                   style={{ border: 0 }}
                   allowFullScreen
                 ></iframe>
-              ) : video.videoUrl ? (
+              ) : cleanVideoUrl ? (
                 <ReactPlayer
-                  url={video.videoUrl}
+                  url={cleanVideoUrl}
                   width="100%"
                   height="100%"
                   controls

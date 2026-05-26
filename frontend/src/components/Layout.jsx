@@ -56,7 +56,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+      <header className="bg-white dark:bg-primary-800 shadow-md sticky top-0 z-50">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -279,7 +279,7 @@ const Layout = () => {
       <WhatsAppButton />
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-gray-800 to-gray-900 dark:from-gray-900 dark:to-gray-950 text-white border-t border-gray-700 dark:border-gray-800 mt-12">
+      <footer className="bg-gradient-to-b from-gray-800 to-gray-900 dark:from-primary-950 dark:to-primary-900 text-white border-t border-gray-700 dark:border-primary-700 mt-12">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* About Section */}
@@ -343,7 +343,7 @@ const Layout = () => {
               <ul className="space-y-3">
                 <li>
                   <Link 
-                    to="/privacy-policy" 
+                    to="/data-policy" 
                     className="text-gray-300 hover:text-white transition-colors duration-200 inline-block hover:translate-x-1 transform"
                   >
                     Privacy Policy
@@ -431,7 +431,7 @@ const Layout = () => {
           </div>
           
           {/* Copyright Section */}
-          <div className="border-t border-gray-700 dark:border-gray-800 mt-10 pt-8">
+          <div className="border-t border-gray-700 dark:border-primary-700 mt-10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-gray-400 text-sm">
                 &copy; {new Date().getFullYear()} Multan Academy. All rights reserved.

@@ -41,7 +41,7 @@ const StudentLogin = () => {
         navigate('/teacher/dashboard');
       } else if (user.role === 'teacher_pending') {
         // Show message and redirect to home
-        toast.info('Your teacher account is pending approval. Please wait for admin approval.');
+        toast('Your teacher account is pending approval. Please wait for admin approval.', { icon: '⏳' });
         navigate('/');
       } else if (user.role === 'admin') {
         navigate('/admin/dashboard');

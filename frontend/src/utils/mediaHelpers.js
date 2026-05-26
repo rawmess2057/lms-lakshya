@@ -43,6 +43,40 @@ export const getEmbedUrl = (url) => {
     return url;
 };
 
+export const cleanYoutubeUrl = (url) => {
+  if (!url) return url;
+
+  const isYoutube = url.includes('youtube.com') || url.includes('youtu.be');
+  if (!isYoutube) return url;
+
+  let videoId = null;
+
+  if (url.includes('youtu.be')) {
+    const match = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+    if (match) videoId = match[1];
+  }
+
+  if (!videoId) {
+    try {
+      const urlParams = new URLSearchParams(new URL(url).search);
+      videoId = urlParams.get('v');
+    } catch {
+      // URL parsing failed, try regex fallback
+      const match = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+      if (match) videoId = match[1];
+    }
+  }
+
+  if (!videoId) {
+    const match = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
+    if (match) videoId = match[1];
+  }
+
+  if (!videoId) return url;
+
+  return `https://www.youtube.com/watch?v=${videoId}`;
+};
+
 export const validateImageUrl = (url) => {
     if (!url) return false;
     return url.match(/^https?:\/\/.+\/.+$/);

@@ -51,7 +51,7 @@ const LandingPage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-600 text-white py-20 md:py-24 overflow-hidden">
+      <section ref={heroRef} className="relative bg-gradient-to-r from-primary-700 via-primary-600 to-secondary-700 text-white py-20 md:py-24 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
@@ -171,7 +171,7 @@ const LandingPage = () => {
 
 
       {/* Intro Video Section - Always Visible */}
-      <section className="py-16 bg-white dark:bg-gray-800 animate-fade-in">
+      <section className="py-16 bg-white dark:bg-primary-800 animate-fade-in">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-4">
@@ -188,7 +188,7 @@ const LandingPage = () => {
               </p>
             )}
             {loading ? (
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
+              <div className="bg-gray-200 dark:bg-primary-700 rounded-lg aspect-video flex items-center justify-center">
                 <div className="text-gray-500 dark:text-gray-400">Loading intro video...</div>
               </div>
             ) : (
@@ -264,7 +264,7 @@ const LandingPage = () => {
 
 
       {/* How It Works */}
-      <section ref={howItWorksRef} className="py-12 bg-gray-50 dark:bg-gray-900">
+      <section ref={howItWorksRef} className="py-12 bg-gray-50 dark:bg-primary-900">
         <div className="container mx-auto px-4">
           <h2 className={`text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white transition-all duration-500 ${howItWorksVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
             How It Works

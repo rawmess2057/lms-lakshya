@@ -47,7 +47,7 @@ const Payment = () => {
         );
         if (pending) {
           setPaymentReferenceId(pending.paymentReferenceId || '');
-          toast.info('You have a pending payment for this course. Please wait for admin approval.');
+          toast('You have a pending payment for this course. Please wait for admin approval.', { icon: '⏳' });
         }
       } catch (error) {
         // Silently fail - payments check is optional

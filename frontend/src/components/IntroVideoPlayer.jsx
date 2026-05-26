@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { FiPlay, FiPause, FiVolume2, FiVolumeX, FiMaximize, FiMinimize, FiInfo } from 'react-icons/fi';
 import BunnyPlayer from './BunnyPlayer';
-import { getVideoSource, getEmbedUrl } from '../utils/mediaHelpers';
+import { getVideoSource, getEmbedUrl, cleanYoutubeUrl } from '../utils/mediaHelpers';
 
 /**
  * Enhanced Intro Video Player Component
@@ -83,7 +83,8 @@ const IntroVideoPlayer = ({
 
   // Use provided video URL or fallback to a default playable video
   // Supports: YouTube, Vimeo, direct MP4/WebM URLs, AWS S3, and Bunny Stream
-  const displayUrl = videoUrl || 'https://www.youtube.com/watch?v=jNQXAC9IVRw'; // Default playable video
+  const rawUrl = videoUrl || 'https://www.youtube.com/watch?v=jNQXAC9IVRw'; // Default playable video
+  const displayUrl = cleanYoutubeUrl(rawUrl);
   const source = getVideoSource(displayUrl);
   const embedUrl = getEmbedUrl(displayUrl);
 

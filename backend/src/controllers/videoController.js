@@ -31,8 +31,8 @@ const isValidBunnyVideoId = (videoId) => {
   return trimmedId.length >= 10 && trimmedId.length <= 100;
 };
 
-// --- GOOGLE DRIVE VIDEO SUPPORT ---
-// Helper to detect and transform Google Drive URLs
+// --- GOOGLE DRIVE & YOUTUBE URL SUPPORT ---
+// Helper to detect and transform video URLs
 const processVideoUrl = (url) => {
   if (!url) return { url: '', source: 'external' }; // Default
 
@@ -50,6 +50,19 @@ const processVideoUrl = (url) => {
     processedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
   } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
     source = 'youtube';
+    // Strip playlist/radio params to avoid embedded player black screen
+    let videoId = null;
+    if (url.includes('youtu.be')) {
+      const match = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+      if (match) videoId = match[1];
+    }
+    if (!videoId) {
+      const match = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+      if (match) videoId = match[1];
+    }
+    if (videoId) {
+      processedUrl = `https://www.youtube.com/watch?v=${videoId}`;
+    }
   } else if (url.includes('vimeo.com')) {
     source = 'vimeo';
   }
@@ -276,8 +289,8 @@ export const createVideo = asyncHandler(async (req, res) => {
     });
   }
 
-  // --- GOOGLE DRIVE VIDEO SUPPORT ---
-  // Helper to detect and transform Google Drive URLs
+  // --- GOOGLE DRIVE & YOUTUBE URL SUPPORT ---
+  // Helper to detect and transform video URLs
   const processVideoUrl = (url) => {
     if (!url) return { url: '', source: 'external' }; // Default
 
@@ -295,6 +308,19 @@ export const createVideo = asyncHandler(async (req, res) => {
       processedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
     } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
       source = 'youtube';
+      // Strip playlist/radio params to avoid embedded player black screen
+      let videoId = null;
+      if (url.includes('youtu.be')) {
+        const match = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+        if (match) videoId = match[1];
+      }
+      if (!videoId) {
+        const match = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+        if (match) videoId = match[1];
+      }
+      if (videoId) {
+        processedUrl = `https://www.youtube.com/watch?v=${videoId}`;
+      }
     } else if (url.includes('vimeo.com')) {
       source = 'vimeo';
     }

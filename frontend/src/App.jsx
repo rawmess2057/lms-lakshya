@@ -46,7 +46,7 @@ import ContactUs from './pages/ContactUs';
 import FAQs from './pages/FAQs';
 import Policies from './pages/Policies';
 import TermsAndConditions from './pages/TermsAndConditions';
-import PrivacyPolicy from './pages/PrivacyPolicy';
+import DataPolicy from './pages/DataPolicy';
 import RefundPolicy from './pages/RefundPolicy';
 import PaymentPolicy from './pages/PaymentPolicy';
 import IntellectualProperty from './pages/IntellectualProperty';
@@ -78,7 +78,7 @@ function App() {
           <Route path="faqs" element={<FAQs />} />
           <Route path="policies" element={<Policies />} />
           <Route path="terms-and-conditions" element={<TermsAndConditions />} />
-          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="data-policy" element={<DataPolicy />} />
           <Route path="refund-policy" element={<RefundPolicy />} />
           <Route path="payment-policy" element={<PaymentPolicy />} />
           <Route path="intellectual-property" element={<IntellectualProperty />} />

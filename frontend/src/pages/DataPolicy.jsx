@@ -1,4 +1,4 @@
-const PrivacyPolicy = () => {
+const DataPolicy = () => {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
@@ -103,5 +103,5 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default DataPolicy;
 
