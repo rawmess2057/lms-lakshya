@@ -1,11 +1,11 @@
-# 🎓 Multan Academy
+# 🎓Lakshya Academy
 
 > A Production-Ready Full-Stack MERN E-Learning Platform
 
 Multan Academy is a comprehensive online learning management system built using the MERN stack (MongoDB, Express.js, React.js, Node.js).  
 It provides a scalable, secure, and feature-rich environment for students, teachers, and administrators.
 
-🌐 Live Website: https://multanacademy.com  
+🌐 Live Website: https:
 💻 Tech Stack: MERN + Stripe + Bunny Stream + Cloudinary + JWT Authentication  
 
 ---
@@ -217,16 +217,6 @@ npm run dev
 - Production-ready deployment structure
 - Scalable backend organization
 
-This project reflects real-world SaaS-level application development.
-([Project Live Demo](https://youtu.be/PbC6Sp3dvpQ))
----
-
-# 👨‍💻 Author
-
-**Zohad**  
-Full-Stack MERN Developer  
-
-LinkedIn: ([LinkedIn URL](https://www.linkedin.com/in/muhammad-zohad-ijaz-7273b52b1/))  
 
 
 ---
