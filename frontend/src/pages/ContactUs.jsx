@@ -80,12 +80,12 @@ const ContactUs = () => {
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">WhatsApp</h3>
                 <a
-                  href="https://wa.me/923126341138"
+                  href="https://wa.me/9779846828659"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-green-600 dark:text-green-400 hover:underline"
                 >
-                  +92 312 634 1138
+                  +977 9846828659
                 </a>
               </div>
             </div>

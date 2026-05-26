@@ -353,7 +353,7 @@ export const submitManualPayment = asyncHandler(async (req, res) => {
     transactionId,
     paymentReferenceId,
     amount: course.price,
-    currency: paymentMethod === 'bank_transfer' ? 'PKR' : 'PKR', // All manual payments use PKR
+    currency: paymentMethod === 'bank_transfer' ? 'NPR' : 'NPR', // All manual payments use NPR
     status: 'pending',
     paymentMethod: paymentMethod,
     manualTransactionId: manualTransactionId.trim(),

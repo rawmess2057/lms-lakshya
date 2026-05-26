@@ -353,7 +353,7 @@ const ManageCourses = () => {
                   <span className="font-medium">Subject:</span> {course.subject?.name || 'N/A'}
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  <span className="font-medium">Price:</span> {course.price ? course.price.toLocaleString() : '0'} PKR
+                  <span className="font-medium">Price:</span> {course.price ? course.price.toLocaleString() : '0'} NPR
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   <span className="font-medium">Enrolled:</span> {course.studentsEnrolled?.length || 0} students
@@ -694,7 +694,7 @@ const ManageCourses = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Price (PKR) *
+                    Price (NPR) *
                   </label>
                   <input
                     type="number"

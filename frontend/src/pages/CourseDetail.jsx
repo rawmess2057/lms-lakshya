@@ -629,7 +629,7 @@ const CourseDetail = () => {
           <div className="card sticky top-24">
             <div className="text-center mb-6">
               <div className="text-4xl font-bold text-primary-600 mb-2">
-                {course.price ? course.price.toLocaleString() : '0'} PKR
+                {course.price ? course.price.toLocaleString() : '0'} NPR
               </div>
               {isEnrolled && (
                 <div className="mb-4">

@@ -162,7 +162,7 @@ const CreateCourse = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Price (PKR) <span className="text-red-500">*</span>
+                Price (NPR) <span className="text-red-500">*</span>
               </label>
               <input
                 type="number"

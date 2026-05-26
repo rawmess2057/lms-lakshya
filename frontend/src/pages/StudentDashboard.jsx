@@ -203,7 +203,7 @@ const StudentDashboard = () => {
                       </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                         <p>
-                          <strong>Amount:</strong> PKR {payment.amount?.toFixed(2)}
+                          <strong>Amount:</strong> NPR {payment.amount?.toFixed(2)}
                           {payment.paymentMethod && payment.paymentMethod !== 'mock' && (
                             <span className="ml-2 text-xs">
                               ({payment.paymentMethod === 'easypaisa' ? 'EasyPaisa' :

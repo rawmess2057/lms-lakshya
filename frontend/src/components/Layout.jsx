@@ -61,12 +61,7 @@ const Layout = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3">
-              <img 
-                src="/assets/brand/logo-primary.jpeg" 
-                alt="Lakshya Academy Logo" 
-                className="h-12 w-auto"
-              />
-              <span className="text-xl font-bold text-gray-900 dark:text-white hidden sm:block">
+              <span className="text-xl font-bold text-gray-900 dark:text-white">
                 Lakshya Academy
               </span>
             </Link>
@@ -376,12 +371,12 @@ const Layout = () => {
                 <div>
                   <p className="text-gray-300 mb-1">WhatsApp</p>
                   <a 
-                    href="https://wa.me/923126341138" 
+                    href="https://wa.me/9779846828659" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-green-300 transition-colors duration-200 inline-block hover:underline"
                   >
-                    +92 312 634 1138
+                    +977 9846828659
                   </a>
                 </div>
                 {(socialMedia.instagram || socialMedia.facebook || socialMedia.tiktok) && (

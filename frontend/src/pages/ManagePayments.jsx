@@ -161,7 +161,7 @@ const ManagePayments = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 dark:text-gray-400 text-sm">Total Revenue</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{totalAmount.toLocaleString()} PKR</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{totalAmount.toLocaleString()} NPR</p>
             </div>
             <FiCreditCard className="w-8 h-8 text-blue-600" />
           </div>
@@ -286,7 +286,7 @@ const ManagePayments = () => {
                   </td>
                   <td className="py-4 px-4">
                     <span className="font-semibold text-gray-900 dark:text-white">
-                      {payment.amount?.toFixed(2) || '0.00'} PKR
+                      {payment.amount?.toFixed(2) || '0.00'} NPR
                     </span>
                   </td>
                   <td className="py-4 px-4">
@@ -365,7 +365,7 @@ const ManagePayments = () => {
 
               <div className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <p><strong>Student:</strong> {receiptPreview.student?.name} ({receiptPreview.student?.email})</p>
-                <p><strong>Amount:</strong> {receiptPreview.amount?.toFixed(2)} PKR</p>
+                <p><strong>Amount:</strong> {receiptPreview.amount?.toFixed(2)} NPR</p>
                 <p><strong>Payment Method:</strong> {
                   receiptPreview.paymentMethod === 'easypaisa' ? 'EasyPaisa' :
                     receiptPreview.paymentMethod === 'jazzcash' ? 'JazzCash' :

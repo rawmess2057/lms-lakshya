@@ -3,43 +3,25 @@
 @tailwind utilities;
 
 /* Video Watermark Protection Styles */
-/* These styles make it harder to hide or remove watermarks via CSS inspection */
-
 .video-watermark {
-  /* Force visibility - prevents hiding via CSS */
   display: block !important;
   visibility: visible !important;
-  
-  /* Prevent common hiding techniques */
   clip: auto !important;
   clip-path: none !important;
-  
-  /* Prevent text selection and copying */
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
-  
-  /* Prevent interaction */
   pointer-events: none !important;
-  
-  /* Ensure high z-index and positioning */
   z-index: 9999 !important;
   position: absolute !important;
-  
-  /* Prevent transformations that might hide it */
   transform: none !important;
-  
-  /* Ensure text is visible (component controls opacity dynamically) */
   color: rgba(255, 255, 255, 0.7) !important;
   background-color: rgba(0, 0, 0, 0.3) !important;
-  
-  /* Prevent width/height manipulation that could hide it */
   min-width: 100px !important;
   min-height: 20px !important;
 }
 
-/* Additional protection for fullscreen mode */
 :fullscreen .video-watermark,
 :-webkit-full-screen .video-watermark,
 :-moz-full-screen .video-watermark,
@@ -100,75 +82,60 @@ input[type="range"]::-moz-range-thumb:hover {
   background: #b8860b;
 }
 
+/* ===== PREMIUM DARK THEME BASE ===== */
+
 @layer base {
   body {
-    @apply bg-gray-50 dark:bg-primary-900 text-gray-900 dark:text-gray-100;
+    @apply bg-gray-50 dark:bg-primary-900 text-gray-900 dark:text-gray-100/90 font-sans font-normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-secondary-500/30 text-primary-900;
   }
 }
 
-/* Animation Keyframes */
+/* ===== ANIMATIONS ===== */
+
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes shake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-4px);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translateX(4px);
-  }
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Accessibility: Respect reduced motion preference */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -179,6 +146,8 @@ input[type="range"]::-moz-range-thumb:hover {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== UTILITIES ===== */
 
 @layer utilities {
   .animate-fade-in {
@@ -197,7 +166,14 @@ input[type="range"]::-moz-range-thumb:hover {
     animation: shake 0.3s ease-in-out;
   }
 
-  /* Course Card Utilities */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 0.5s ease-out;
+  }
+
   .course-card {
     @apply flex flex-col h-full;
   }
@@ -217,34 +193,147 @@ input[type="range"]::-moz-range-thumb:hover {
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 50ms; }
+  .stagger-2 { animation-delay: 100ms; }
+  .stagger-3 { animation-delay: 150ms; }
+  .stagger-4 { animation-delay: 200ms; }
+  .stagger-5 { animation-delay: 250ms; }
+  .stagger-6 { animation-delay: 300ms; }
+  .stagger-7 { animation-delay: 350ms; }
+  .stagger-8 { animation-delay: 400ms; }
+
+  /* Gradient text for premium headings */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-secondary-500 to-primary-500;
+    background-size: 200% auto;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary-400 via-secondary-500 to-secondary-600;
+    background-size: 200% auto;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .dark .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-28;
+  }
+
+  .section-container {
+    @apply container mx-auto px-4;
+  }
 }
 
+/* ===== COMPONENTS ===== */
+
 @layer components {
+  /* ===== GLASS ===== */
+  .glass {
+    @apply bg-white/80 dark:bg-primary-800/60 backdrop-blur-xl
+           border border-white/40 dark:border-white/[0.06]
+           shadow-lg shadow-primary-500/5 dark:shadow-black/20;
+  }
+
+  .glass-hover {
+    @apply hover:shadow-xl hover:shadow-primary-500/10 dark:hover:shadow-black/30
+           hover:-translate-y-0.5
+           hover:border-secondary-500/40 dark:hover:border-secondary-500/30
+           transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .glass-card {
+    @apply glass glass-hover;
+  }
+
+  .glass-card-static {
+    @apply bg-white/75 dark:bg-primary-800/50 backdrop-blur-xl
+           border border-white/30 dark:border-white/[0.05]
+           shadow-lg dark:shadow-black/20;
+  }
+
+  /* Dark glass variant for premium surfaces */
+  .glass-dark {
+    @apply bg-primary-800/80 dark:bg-primary-800/70 backdrop-blur-xl
+           border border-primary-700/50 dark:border-white/[0.08]
+           shadow-xl shadow-black/10 dark:shadow-black/30;
+  }
+
+  .glass-card-dark {
+    @apply glass-dark glass-hover;
+  }
+
+  /* ===== BUTTONS ===== */
+
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
-    @apply hover:scale-[1.02] hover:shadow-lg active:scale-[0.98];
-    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
+    @apply bg-primary-600 hover:bg-primary-500 text-white font-medium
+           py-2.5 px-5 rounded-xl
+           transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    @apply hover:scale-[1.02] hover:shadow-lg hover:shadow-primary-500/25
+           active:scale-[0.97];
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500/50 focus:ring-offset-2 focus:ring-offset-transparent;
+    @apply dark:hover:shadow-primary-500/15;
   }
 
   .btn-secondary {
-    @apply bg-secondary-600 hover:bg-secondary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
-    @apply hover:scale-[1.02] hover:shadow-lg active:scale-[0.98];
-    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
+    @apply bg-secondary-600 hover:bg-secondary-500 text-white font-medium
+           py-2.5 px-5 rounded-xl
+           transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    @apply hover:scale-[1.02] hover:shadow-lg hover:shadow-secondary-500/25
+           active:scale-[0.97];
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500/50 focus:ring-offset-2 focus:ring-offset-transparent;
   }
 
   .btn-outline {
-    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
-    @apply hover:scale-[1.02] hover:shadow-md active:scale-[0.98];
-    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
+    @apply border border-primary-600/30 dark:border-white/20
+           text-primary-600 dark:text-gray-300
+           hover:bg-primary-600 hover:text-white dark:hover:bg-white/10
+           font-medium py-2.5 px-5 rounded-xl
+           transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    @apply hover:scale-[1.02] hover:shadow-md hover:shadow-primary-500/10
+           active:scale-[0.97];
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary-500/50 focus:ring-offset-2;
   }
+
+  /* ===== INPUTS ===== */
 
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent bg-white dark:bg-primary-800 text-gray-900 dark:text-gray-100;
-    @apply transition-all duration-200;
-  }
-
-  .input-field:focus {
-    @apply shadow-sm;
+    @apply w-full px-4 py-2.5
+           border border-gray-300 dark:border-white/10
+           rounded-xl
+           bg-white dark:bg-primary-800/80
+           text-gray-900 dark:text-gray-100
+           placeholder-gray-400 dark:placeholder-gray-500
+           transition-all duration-200 ease-smooth;
+    @apply focus:ring-2 focus:ring-secondary-500/40 focus:border-transparent
+           focus:shadow-lg focus:shadow-secondary-500/5;
+    @apply dark:focus:bg-primary-800;
   }
 
   .input-field.error {
@@ -255,18 +344,40 @@ input[type="range"]::-moz-range-thumb:hover {
     @apply border-green-500;
   }
 
+  /* ===== CARDS ===== */
+
   .card {
-    @apply bg-white dark:bg-primary-800 rounded-lg shadow-md p-6;
-    @apply transition-all duration-200 ease-out;
+    @apply bg-white dark:bg-primary-800/90
+           rounded-2xl p-6
+           border border-gray-200/60 dark:border-white/[0.06]
+           shadow-sm dark:shadow-black/20
+           transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .card:hover {
-    @apply -translate-y-1 shadow-xl;
+    @apply -translate-y-0.5 shadow-lg dark:shadow-black/30
+           dark:border-white/[0.10];
   }
 
   .card-animate {
     @apply opacity-0 translate-y-4;
-    animation: slideUp 0.4s ease-out forwards;
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  /* Premium card with gradient border */
+  .card-premium {
+    @apply card relative;
+  }
+
+  /* ===== SECTIONS ===== */
+
+  .section-dark {
+    @apply bg-primary-800/50 dark:bg-white/[0.02] border-y border-primary-700/20 dark:border-white/[0.03];
+  }
+
+  .section-gradient {
+    @apply bg-gradient-to-br from-primary-50 via-white to-secondary-50
+           dark:from-primary-900 dark:via-primary-950 dark:to-primary-900;
   }
 }
-

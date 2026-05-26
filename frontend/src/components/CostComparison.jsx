@@ -8,7 +8,7 @@ const CostComparison = () => {
     {
       name: 'Lakshya Academy',
       price: '12,000',
-      currency: 'PKR',
+      currency: 'NPR',
       isHighlighted: true,
       features: [
         'Online Learning Platform',
@@ -22,7 +22,7 @@ const CostComparison = () => {
     {
       name: 'Other Online Platforms',
       price: '32,000',
-      currency: 'PKR',
+      currency: 'NPR',
       isHighlighted: false,
       features: [
         'Online Learning',
@@ -33,7 +33,7 @@ const CostComparison = () => {
     {
       name: 'Physical Academies',
       price: '60,000',
-      currency: 'PKR',
+      currency: 'NPR',
       isHighlighted: false,
       features: [
         'In-Person Classes',

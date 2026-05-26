@@ -37,7 +37,7 @@ const PaymentSuccess = () => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 dark:text-gray-400">Amount</span>
-              <span className="text-gray-900 dark:text-white">PKR {payment.amount}</span>
+              <span className="text-gray-900 dark:text-white">NPR {payment.amount}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 dark:text-gray-400">Status</span>

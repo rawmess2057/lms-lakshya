@@ -162,11 +162,11 @@ const Payment = () => {
           <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-gray-600 dark:text-gray-400">Course Price</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{course.price ? course.price.toLocaleString() : '0'} PKR</span>
+              <span className="font-semibold text-gray-900 dark:text-white">{course.price ? course.price.toLocaleString() : '0'} NPR</span>
             </div>
             <div className="border-t border-gray-200 dark:border-gray-700 pt-2 flex justify-between">
               <span className="text-lg font-semibold text-gray-900 dark:text-white">Total</span>
-              <span className="text-lg font-bold text-primary-600">{course.price ? course.price.toLocaleString() : '0'} PKR</span>
+              <span className="text-lg font-bold text-primary-600">{course.price ? course.price.toLocaleString() : '0'} NPR</span>
             </div>
           </div>
         </div>
@@ -229,7 +229,7 @@ const Payment = () => {
               </h3>
               <div className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
                 <p>
-                  <strong>Step 1:</strong> Transfer <strong>PKR {course.price ? course.price.toLocaleString() : '0'}</strong> to our account:
+                  <strong>Step 1:</strong> Transfer <strong>NPR {course.price ? course.price.toLocaleString() : '0'}</strong> to our account:
                 </p>
                 <div className="bg-white dark:bg-gray-800 p-3 rounded mt-2 font-mono text-xs space-y-1">
                   {paymentMethod === 'bank_transfer' ? (
