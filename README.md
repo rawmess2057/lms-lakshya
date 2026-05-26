@@ -10,27 +10,8 @@ It provides a scalable, secure, and feature-rich environment for students, teach
 
 ---
 
-# 📸 Screenshots
 
-> 📌 Screenshots are located inside the `/screenshots` folder in the root directory.
 
-## 🏠 Landing Page
-![Landing Page](./screenshots/landing-page.png)
-
-## 🎓 Student Dashboard
-![Student Dashboard](./screenshots/student-dashboard.png)
-
-## 🛠 Admin Dashboard
-![Admin Dashboard](./screenshots/admin-dashboard.png)
-
-## 📚 Course Detail Page
-![Course Detail](./screenshots/course-detail.png)
-
-## 💳 Payment Integration (Stripe)
-![Payment Page](./screenshots/payment.png)
-
-## 🎬 Course View (Student Perspective)
-![Course View](./screenshots/course-view.png)
 ---
 
 # 🚀 Key Features
